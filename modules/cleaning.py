@@ -15,12 +15,29 @@ def drop_column(df, column='Customers'):
     df_new = df.drop(str(column), axis=1)
     return df_new
 
+
 def drop_null_targets(df, target='Sales'):
     '''
-    Remove the null targets (i.e. Sales)
+    Remove the rows where value for Sales is null
     '''
     null_target = df[df[str(target)].isnull()]
     df_new = df[~df.index.isin(null_target.index)]
+    return df_new
+
+def drop_zero_targets(df, target='Sales'):
+    '''
+    Remove the rows with zero Sales.
+    '''
+    zero_target = df[df[str(target)] == 0]
+    df_new = df[~df.index.isin(zero_target.index)]
+    return df_new
+
+def clean_targets(df, target='Sales'):
+    '''
+    Drop all the rows where Sales does is null or zero.
+    '''
+    df_new = drop_null_targets(df, target=str(target))
+    df_new = drop_zero_targets(df, target=str(target))
     return df_new
 
 def count_null_features(df):
@@ -84,4 +101,3 @@ def rough_cleaning(df, threshold=0.1, verbose=False):
     if verbose:
         print("Total number of rows in clean data set: ", df.shape[0])
     return df
-
