@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 import datetime as dt
-from sklearn.preprocessing import OneHotEncoder
+#from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import minmax_scale
 
 def dates_features(df):
     '''
@@ -23,6 +24,17 @@ def dates_features(df):
     df_new['is_saturday'] = np.where(df_new['day_of_week'] == 5, 1, 0)
 
     return df_new
+
+
+def date_split_train_test(df, date_split):
+    '''
+    Splits the dataset in train and test based on the date_split.
+    Returns df_train and df_test.
+    '''
+    df_train = df[df.Date < date_split]
+    df_test = df[df.Date >= date_split]
+
+    return df_train, df_test
 
 
 def one_hot_encoding(df_train, column):
@@ -62,3 +74,31 @@ def mean_encoding(df_train, column):
     df_new.loc[:, column + '_mean_encoded'] = df_new.loc[:, column].replace(to_replace=dict_values)
 
     return df_new, dict_values
+
+
+def normalize(df_train, column):
+    '''
+    Normalize a column.
+    Used after split.
+    Returns a new dataframe.
+    '''
+    # Create a new dataframe
+    df_new = df_train.copy()
+
+    df_new.loc[:, column] = minmax_scale(df_new.loc[:, column])
+
+    return df_train
+
+
+def standard(df_train, column):
+    '''
+    Standardize a column.
+    Used after split.
+    Returns a new dataframe.
+    '''
+    # Create a new dataframe
+    df_new = df_train.copy()
+
+    df_new.loc[:, column] = scale(df_new.loc[:, column])
+
+    return df_train
