@@ -34,10 +34,12 @@ def count_null_features(df):
         print(f"Column {str(column)} has {frac * 100 : .0f}% null values.")
 
 
-def drop_null_features(df, threshold=0.03, verbose=True):
+def drop_null_features(df, threshold=0.03, verbose=False):
     '''
-    Remove the null features if number of rows with null feature is
-    less than a certain percentage of the full data rows
+    Remove the null features from a column if number of rows with null
+    values are very small, i.e. less than a certain percentage of the
+    full data rows.
+    The default threshold is 3%.
     '''
     tot_rows = df.shape[0]
     if verbose:
@@ -55,5 +57,31 @@ def drop_null_features(df, threshold=0.03, verbose=True):
         print("Total number of rows in clean data set: ", df.shape[0])
     return df
 
-
+def rough_cleaning(df, threshold=0.1, verbose=False):
+    '''
+    Remove the null features from a column if number of rows with null
+    feature is less than a certain percentage of the full data rows
+    (i.e. the threshold), drop the whole column if number of rows with
+    null feature is larger than the threshold.
+    The default threshold is 10%.
+    '''
+    tot_rows = df.shape[0]
+    if verbose:
+        print("Total number of rows in full data set: ", tot_rows)
+    for column in df.columns:
+        null_rows = df.loc[df.loc[:, str(column)].isnull()].shape[0]
+        frac = null_rows / tot_rows
+        if verbose:
+            print(f"Column {str(column)} has {frac * 100 : .0f}% null values.")
+        if frac > 0 and frac <= threshold:
+            df = df.loc[~df.loc[:, str(column)].isnull()]
+            if verbose:
+                print(f"Removed rows with null value from {str(column)}.")
+        elif frac > threshold:
+            df = df.drop(str(column), axis=1)
+            if verbose:
+                print(f"Dropped the column {str(column)}.")
+    if verbose:
+        print("Total number of rows in clean data set: ", df.shape[0])
+    return df
 
