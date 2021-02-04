@@ -1,5 +1,4 @@
-# DSR-competition
+# DSR Mini-Competition
 
-Team: Sara G., Mena N., John E.
+Team 1: John Enevoldsen, Sara Ghasemi, Mena Nasr 
 
-helloword
