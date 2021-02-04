@@ -54,26 +54,27 @@ def one_hot_encoding(df, column):
     return df_new
 
 
-def mean_encoding(df_train, column):
+def mean_encoding(df_train, df_test, column):
     '''
     Mean encoding target column with mean of Sales.
     Used after train/test split.
-    Returns a new dataframe and a dictionary of the values for the test dataset.
+    Returns a new train dataframe and a new test dataframe.
     '''
     # Create a copy of the df
-    df_new = df_train.copy()
-    # Init an empty dict and check for the unique values in the column
+    df_new_train = df_train.copy()
+    df_new_test = df_test.copy()
+    # Init an empty dict and check for the unique values in the
     dict_values = {}
-    unique_values = df_new.loc[:, column].unique()
+    unique_values = df_new_train.loc[:, column].unique()
 
-    # Loop through each value to compute the mean of the Sales
     for unique in unique_values:
-        dict_values[unique] = df_new[df_new.loc[:, column] == unique].Sales.mean()
+        dict_values[unique] = df_new_train[df_new_train.loc[:, column] == unique].Sales.mean()
 
-    # Create a new column with the mean
-    df_new.loc[:, column + '_mean_encoded'] = df_new.loc[:, column].replace(to_replace=dict_values)
+    df_new_train.loc[:, column + '_mean_encoded'] = df_new_train.loc[:, column].replace(to_replace=dict_values)
 
-    return df_new, dict_values
+    df_new_test.loc[:, column + '_mean_encoded'] = df_new_test.loc[:, column].replace(to_replace=dict_values)
+
+    return df_new_train, df_new_test
 
 
 def normalize(df_train, column):
