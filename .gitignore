@@ -36,6 +36,7 @@
 ehthumbs.db
 Thumbs.db
 
+.ipynb_checkpoints/*.ipynb
 notebooks/.*/*.ipynb
 modules/__pycache__/*
 
