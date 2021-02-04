@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ```
 
 
-### Run the model notebook "name of the notebook"
+### Run the model notebook `DSR-competition-team1.ipynb`
 
 
 Run each cell one by one.
