@@ -19,7 +19,7 @@
 `jupyter notebook`
 
 
-## Run the model notebook `DSR-competition-team1.ipynb`
+## Run the model notebook `final_model.ipynb`
 
 Run each cell one by one.
 Result will be in the last cell
