@@ -37,17 +37,17 @@ def date_split_train_test(df, date_split):
     return df_train, df_test
 
 
-def one_hot_encoding(df_train, column):
+def one_hot_encoding(df, column):
     '''
     Function to take a column and transform and one-hot encode it.
-    Used after train/test split.
+    Used before train/test split.
     Returns a dataframe with the original column removed and the new encoded columns added.
     '''
 
     # create dummies series
-    dummies = pd.get_dummies(df_train.loc[:, column], prefix=str(column + ' '))
+    dummies = pd.get_dummies(df.loc[:, column], prefix=str(column + ' '))
     # concat original dataframe and dummies
-    df_new = pd.concat([df_train, dummies], axis=1)
+    df_new = pd.concat([df, dummies], axis=1)
     # remove the original column
     df_new = df_new.drop(column, axis=1)
 
@@ -87,7 +87,7 @@ def normalize(df_train, column):
 
     df_new.loc[:, column] = minmax_scale(df_new.loc[:, column])
 
-    return df_train
+    return df_new
 
 
 def standard(df_train, column):
@@ -101,4 +101,4 @@ def standard(df_train, column):
 
     df_new.loc[:, column] = scale(df_new.loc[:, column])
 
-    return df_train
+    return df_new
