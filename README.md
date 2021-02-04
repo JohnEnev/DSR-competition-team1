@@ -6,7 +6,7 @@
 
 
 ```
-# get this repository:
+# clone this repository:
 
 git clone https://github.com/JohnEnev/DSR-competition-team1.git
 
@@ -15,3 +15,10 @@ git clone https://github.com/JohnEnev/DSR-competition-team1.git
 pip install -r requirements.txt
 
 ```
+
+
+### Run the model notebook "name of the notebook"
+
+
+Run each cell one by one.
+Result will be in the last cell
