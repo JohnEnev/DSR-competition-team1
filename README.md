@@ -2,20 +2,17 @@
 
 **Team 1: John Enevoldsen, Sara Ghasemi, Mena Nasr**
 
-### Setup
+# Setup
 
 
 
-## clone this repository:
-
+## Clone this repository:
 `git clone https://github.com/JohnEnev/DSR-competition-team1.git`
 
 ## `cd` into the directory
-
 `cd DSR-competition-team1`
 
-## install the required packages:
-
+## Install the required packages:
 `pip install -r requirements.txt`
 
 ## Open the jupyter notebook
@@ -24,6 +21,9 @@
 
 ## Run the model notebook `DSR-competition-team1.ipynb`
 
-
 Run each cell one by one.
 Result will be in the last cell
+
+# Thought process
+
+
