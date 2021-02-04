@@ -5,16 +5,20 @@
 ### Setup
 
 
-```
+
 # clone this repository:
 
-git clone https://github.com/JohnEnev/DSR-competition-team1.git
+`git clone https://github.com/JohnEnev/DSR-competition-team1.git`
+
+# `cd` into the directory
+
+`cd DSR-competition-team1`
 
 # install the required packages:
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
-```
+
 
 
 ### Run the model notebook `DSR-competition-team1.ipynb`
