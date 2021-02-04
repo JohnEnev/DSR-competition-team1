@@ -6,22 +6,23 @@
 
 
 
-# clone this repository:
+## clone this repository:
 
 `git clone https://github.com/JohnEnev/DSR-competition-team1.git`
 
-# `cd` into the directory
+## `cd` into the directory
 
 `cd DSR-competition-team1`
 
-# install the required packages:
+## install the required packages:
 
 `pip install -r requirements.txt`
 
+## Open the jupyter notebook
+`jupyter notebook`
 
 
-
-### Run the model notebook `DSR-competition-team1.ipynb`
+## Run the model notebook `DSR-competition-team1.ipynb`
 
 
 Run each cell one by one.
